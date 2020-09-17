@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel.Cliente>
+﻿@model IEnumerable<WeDeliver.App.Domain.Cliente.Cliente>
 
 @{
     ViewData["Title"] = "Index";
@@ -27,27 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Endereco)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Endereco.Logradouro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Bairro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Cidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Lote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Complemento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco.Referencia)
-            </th>*@
         </tr>
     </thead>
     <tbody>
@@ -68,27 +47,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Endereco)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Endereco.Logradouro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Bairro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Lote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Complemento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco.Referencia)
-            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

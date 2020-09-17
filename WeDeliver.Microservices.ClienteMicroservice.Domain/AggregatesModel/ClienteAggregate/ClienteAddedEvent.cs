@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel
+namespace WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteAggregate
 {
     public class ClienteAddedEvent
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WeDeliver.Common.Domain.Entities;
 
-namespace WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel
+namespace WeDeliver.App.Domain.Cliente
 {
     public class Cliente : EntidadeBase<Guid>
     {
@@ -12,16 +12,5 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.Cli
         public string Cpf { get; set; }
         public string Email { get; set; }
         public string Endereco { get; set; }
-
-        public Cliente(string nome, string telefone, string cpf, string email, string endereco)
-        {
-            Nome = nome;
-            Telefone = telefone;
-            Cpf = cpf;
-            Email = email;
-            Endereco = endereco;
-        }
-
-        public Cliente() { }
     }
 }

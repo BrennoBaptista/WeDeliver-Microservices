@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeDeliver.Common.Domain\WeDeliver.Common.Domain.csproj" />
+    <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Domain\WeDeliver.Microservices.PostagemMicroservice.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

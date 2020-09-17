@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using WeDeliver.Common.Domain.Entities;
+using WeDeliver.Common.Domain.Services;
 
 namespace WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.PostagemAggregate
 {
-    public class PostagemService : IPostagemService
+    public class PostagemService : BaseService<Guid, Postagem>, IPostagemService
     {
         private IPostagemRepository _postagemRepository;
 
-        public PostagemService(IPostagemRepository postagemRepository)
+        public PostagemService(IPostagemRepository postagemRepository) :base(postagemRepository)
         {
             _postagemRepository = postagemRepository;
         }
@@ -28,10 +29,17 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.Po
             return postagem;
         }
 
+        public Postagem GetPostagemPorPacote(Guid pacoteId)
+        {
+            return _postagemRepository.GetPostagemPorPacote(pacoteId);
+        }
+
         public async Task<bool> ProcessarPostagemAsync(Postagem postagem)
         {
             await _postagemRepository.CreateAsync(postagem);
             return await _postagemRepository.SaveChangesAsync() > 0;
         }
+
+        
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel;
+using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteAggregate;
 
 namespace WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Config
 {

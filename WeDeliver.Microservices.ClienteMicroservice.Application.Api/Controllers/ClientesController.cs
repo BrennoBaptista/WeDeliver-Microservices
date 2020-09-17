@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel;
+using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteAggregate;
 using WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Contexts;
 
 namespace WeDeliver.Microservices.ClienteMicroservice.Application.Api.Controllers
@@ -15,7 +15,6 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Application.Api.Controller
     public class ClientesController : ControllerBase
     {
         private readonly ClienteContext _context;
-
         public ClientesController(ClienteContext context)
         {
             _context = context;

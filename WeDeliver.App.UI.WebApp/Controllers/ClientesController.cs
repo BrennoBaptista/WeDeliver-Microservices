@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel;
-using WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Contexts;
+using WeDeliver.App.Application;
+using WeDeliver.App.Domain.Cliente;
 
 namespace WeDeliver.App.UI.WebApp.Controllers
 {
     public class ClientesController : Controller
     {
-        private readonly ClienteContext _context;
+        private readonly IAppService _appService;
 
-        public ClientesController(ClienteContext context)
+        public ClientesController(IAppService appService)
         {
-            _context = context;
+            _appService = appService;
         }
 
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            var clientes = await _context.Clientes.ToListAsync();
+            var clientes = await _appService.GetAllClientesAsync();
             return View(clientes);
         }
 
         // GET: Clientes/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cliente = await _appService.GetClienteAsync(id);
+
             if (cliente == null)
             {
                 return NotFound();
@@ -60,22 +59,23 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 cliente.Id = Guid.NewGuid();
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
+                await _appService.AdicionarClienteAsync(cliente);
+                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(cliente);
         }
 
         // GET: Clientes/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.FindAsync(id);
+            var cliente = await _appService.GetClienteAsync(id);
+
             if (cliente == null)
             {
                 return NotFound();
@@ -99,8 +99,8 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
-                    await _context.SaveChangesAsync();
+                    _appService.UpdateCliente(cliente);
+                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -119,15 +119,15 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         }
 
         // GET: Clientes/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cliente = await _appService.GetClienteAsync(id);
+
             if (cliente == null)
             {
                 return NotFound();
@@ -141,15 +141,14 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
+            await _appService.DeleteClienteAsync(id);
+            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClienteExists(Guid id)
         {
-            return _context.Clientes.Any(e => e.Id == id);
+            return (_appService.GetClienteAsync(id) != null);
         }
     }
 }

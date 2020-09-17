@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WeDeliver.Common.Domain.Entities;
-using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteModel;
+using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteAggregate;
 using WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Config;
 
 namespace WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Contexts
@@ -11,7 +11,6 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Contexts
     public class ClienteContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; }
-        //public DbSet<Endereco> Enderecos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

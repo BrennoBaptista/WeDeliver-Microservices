@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\DTOs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeDeliver.App.Domain\WeDeliver.App.Domain.csproj" />
+    <ProjectReference Include="..\WeDeliver.App.Infra.DataAccess\WeDeliver.App.Infra.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

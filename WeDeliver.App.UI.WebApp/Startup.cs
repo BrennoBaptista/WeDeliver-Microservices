@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WeDeliver.App.Application;
+using WeDeliver.Common.Domain.Services;
+using WeDeliver.Common.Infra.Helper.Serializers;
 using WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Contexts;
 using WeDeliver.Microservices.PacoteMicroservice.Infra.DataAccess.Contexts;
 using WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Contexts;
@@ -30,6 +33,9 @@ namespace WeDeliver.App.UI.WebApp
             services.AddDbContext<ClienteContext>();
             services.AddDbContext<PacoteContext>();
             services.AddDbContext<PostagemContext>();
+
+            services.AddScoped<ISerializerService, SerializerService>();
+            services.AddScoped<IAppService, AppService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

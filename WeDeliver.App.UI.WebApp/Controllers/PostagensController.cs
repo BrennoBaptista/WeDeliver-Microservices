@@ -5,24 +5,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.PostagemAggregate;
+using WeDeliver.App.Application;
+using WeDeliver.App.Domain;
 using WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Contexts;
 
 namespace WeDeliver.App.UI.WebApp.Controllers
 {
     public class PostagensController : Controller
     {
+        private readonly IAppService _appService;
         private readonly PostagemContext _context;
 
-        public PostagensController(PostagemContext context)
+        public PostagensController(IAppService appService, PostagemContext context)
         {
+            _appService = appService;
             _context = context;
         }
 
         // GET: Postagens
         public async Task<IActionResult> Index()
         {
-            var postagens = await _context.Postagens.ToListAsync();
+            //var postagens = await _context.Postagens.ToListAsync();
+            var postagens = await _appService.GetAllPostagensAsync();
 
             return View(postagens);
         }
@@ -34,7 +38,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             {
                 return NotFound();
             }
-
+            
             var postagem = await _context.Postagens
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (postagem == null)
