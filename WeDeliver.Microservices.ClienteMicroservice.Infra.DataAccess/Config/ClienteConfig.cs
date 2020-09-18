@@ -11,7 +11,13 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
-            
+            builder.ToTable("Clientes");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Nome).IsRequired();
+            builder.Property(a => a.Telefone).IsRequired();
+            builder.Property(a => a.Cpf).IsRequired();
+            builder.Property(a => a.Email).IsRequired();
+            builder.Property(a => a.Endereco).IsRequired();
         }
     }
 }

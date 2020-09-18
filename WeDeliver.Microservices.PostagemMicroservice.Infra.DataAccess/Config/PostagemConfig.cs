@@ -11,7 +11,12 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Postagem> builder)
         {
-            
+            builder.ToTable("Postagens");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id_Pacote).IsRequired();
+            builder.Property(a => a.Recebedor).IsRequired();
+            builder.Property(a => a.Destino).IsRequired();
+            builder.Property(a => a.DataEnvio).IsRequired();
         }
     }
 }

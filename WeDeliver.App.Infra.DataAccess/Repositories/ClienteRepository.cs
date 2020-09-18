@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using WeDeliver.App.Domain.Cliente;
+using WeDeliver.App.Domain.Clientes;
 using WeDeliver.Common.Domain.Services;
 
 namespace WeDeliver.App.Infra.DataAccess.Repositories
@@ -24,10 +24,15 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes", httpContent);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<Cliente> ReadAsync(Guid id)
         {
             var httpClient = new HttpClient();
-            await httpClient.DeleteAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{id}");
+            var result = await httpClient.GetAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{id}");
+
+            string serializedCliente = await result.Content.ReadAsStringAsync();
+            var cliente = _serializerService.Deserialize<Cliente>(serializedCliente);
+
+            return cliente;
         }
 
         public IEnumerable<Cliente> ReadAll()
@@ -58,28 +63,23 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return clientes;
         }
 
-        public async Task<Cliente> ReadAsync(Guid id)
-        {
-            var httpClient = new HttpClient();
-            var result = await httpClient.GetAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{id}");
-
-            string serializedCliente = await result.Content.ReadAsStringAsync();
-            var cliente = _serializerService.Deserialize<Cliente>(serializedCliente);
-
-            return cliente;
-        }
-
-        public Task<int> SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Cliente entity)
         {
             var httpClient = new HttpClient();
             string serializedCliente = _serializerService.Serialize(entity);
             var httpContent = new StringContent(serializedCliente, Encoding.UTF8, "application/json");
             httpClient.PutAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{entity.Id}", httpContent);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var httpClient = new HttpClient();
+            await httpClient.DeleteAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{id}");
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

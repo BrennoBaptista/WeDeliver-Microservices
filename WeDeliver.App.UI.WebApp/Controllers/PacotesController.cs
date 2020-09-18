@@ -1,40 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WeDeliver.Microservices.PacoteMicroservice.Domain.AggregatesModel.PacoteAggregate;
-using WeDeliver.Microservices.PacoteMicroservice.Infra.DataAccess.Contexts;
+using WeDeliver.App.Application;
+using WeDeliver.App.Domain.Pacotes;
 
 namespace WeDeliver.App.UI.WebApp.Controllers
 {
     public class PacotesController : Controller
     {
-        private readonly PacoteContext _context;
+        private readonly IAppService _appService;
 
-        public PacotesController(PacoteContext context)
+        public PacotesController(IAppService appService)
         {
-            _context = context;
+            _appService = appService;
         }
 
         // GET: Pacotes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pacotes.ToListAsync());
+            var pacotes = await _appService.GetAllPacotesAsync();
+            return View(pacotes);
         }
 
         // GET: Pacotes/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pacote = await _context.Pacotes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pacote = await _appService.GetPacoteAsync(id);
+
             if (pacote == null)
             {
                 return NotFound();
@@ -59,22 +57,22 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 pacote.Id = Guid.NewGuid();
-                _context.Add(pacote);
-                await _context.SaveChangesAsync();
+                await _appService.AdicionarPacoteAsync(pacote);
                 return RedirectToAction(nameof(Index));
             }
             return View(pacote);
         }
 
         // GET: Pacotes/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pacote = await _context.Pacotes.FindAsync(id);
+            var pacote = await _appService.GetPacoteAsync(id);
+
             if (pacote == null)
             {
                 return NotFound();
@@ -98,8 +96,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             {
                 try
                 {
-                    _context.Update(pacote);
-                    await _context.SaveChangesAsync();
+                    _appService.UpdatePacote(pacote);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -118,15 +115,15 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         }
 
         // GET: Pacotes/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pacote = await _context.Pacotes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pacote = await _appService.GetPacoteAsync(id);
+
             if (pacote == null)
             {
                 return NotFound();
@@ -140,15 +137,13 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var pacote = await _context.Pacotes.FindAsync(id);
-            _context.Pacotes.Remove(pacote);
-            await _context.SaveChangesAsync();
+            await _appService.DeletePacoteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool PacoteExists(Guid id)
         {
-            return _context.Pacotes.Any(e => e.Id == id);
+            return (_appService.GetPacoteAsync(id) != null);
         }
     }
 }

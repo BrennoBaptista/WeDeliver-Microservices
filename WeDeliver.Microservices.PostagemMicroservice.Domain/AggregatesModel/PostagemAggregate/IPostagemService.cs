@@ -7,10 +7,8 @@ using WeDeliver.Common.Domain.Services;
 
 namespace WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.PostagemAggregate
 {
-    public interface IPostagemService : IBaseService<Guid, Postagem>
+    public interface IPostagemService
     {
-        Postagem AdicionarPostagem(Guid pacoteId, string destino, string recebedor);
-        Task<bool> ProcessarPostagemAsync(Postagem postagem);
         Postagem GetPostagemPorPacote(Guid pacoteId);
     }
 }

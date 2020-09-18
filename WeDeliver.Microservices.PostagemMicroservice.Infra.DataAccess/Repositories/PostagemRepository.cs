@@ -10,16 +10,14 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Reposito
 {
     public class PostagemRepository : EntityFrameworkRepositoryBase<Guid, Postagem>, IPostagemRepository
     {
-        private readonly DbContext _context;
         public PostagemRepository(DbContext context)
             : base(context)
         {
-            _context = context;
         }
 
         public Postagem GetPostagemPorPacote(Guid pacoteId)
         {
-            return _context.Set<Postagem>().Find(pacoteId);
+            throw new NotImplementedException();
         }
     }
 }

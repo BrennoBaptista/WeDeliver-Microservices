@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WeDeliver.Common.Domain.Entities;
 using WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.ClienteAggregate;
 using WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.Config;
 

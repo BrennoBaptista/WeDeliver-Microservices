@@ -8,29 +8,45 @@ namespace WeDeliver.Microservices.PacoteMicroservice.Domain.AggregatesModel.Paco
     public class PacoteService : IPacoteService
     {
         private IPacoteRepository _pacoteRepository;
+
         public PacoteService(IPacoteRepository pacoteRepository)
         {
             _pacoteRepository = pacoteRepository;
         }
 
-        public Pacote AdicionarPacote(Guid clienteId, double peso, double altura, double largura, double profundidade)
+        public async Task CreateAsync(Pacote entity)
         {
-            var pacote = new Pacote
-            {
-                Id = Guid.NewGuid(),
-                Id_Cliente = clienteId,
-                Peso = peso,
-                Altura = altura,
-                Largura = largura,
-                Profundidade = profundidade,
-            };
-            return pacote;
+            await _pacoteRepository.CreateAsync(entity);
         }
 
-        public async Task<bool> ProcessarPacoteAsync(Pacote pacote)
+        public async Task DeleteAsync(Guid id)
         {
-            await _pacoteRepository.CreateAsync(pacote);
-            return await _pacoteRepository.SaveChangesAsync() > 0;
+            await _pacoteRepository.DeleteAsync(id);
+        }
+
+        public IEnumerable<Pacote> ReadAll()
+        {
+            return _pacoteRepository.ReadAll();
+        }
+
+        public async Task<IEnumerable<Pacote>> ReadAllAsync()
+        {
+            return await _pacoteRepository.ReadAllAsync();
+        }
+
+        public async Task<Pacote> ReadAsync(Guid id)
+        {
+            return await _pacoteRepository.ReadAsync(id);
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _pacoteRepository.SaveChangesAsync();
+        }
+
+        public void Update(Pacote entity)
+        {
+            _pacoteRepository.Update(entity);
         }
     }
 }

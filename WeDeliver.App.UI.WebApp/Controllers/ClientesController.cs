@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WeDeliver.App.Application;
-using WeDeliver.App.Domain.Cliente;
+using WeDeliver.App.Domain.Clientes;
 
 namespace WeDeliver.App.UI.WebApp.Controllers
 {
@@ -60,7 +58,6 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             {
                 cliente.Id = Guid.NewGuid();
                 await _appService.AdicionarClienteAsync(cliente);
-                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(cliente);
@@ -100,7 +97,6 @@ namespace WeDeliver.App.UI.WebApp.Controllers
                 try
                 {
                     _appService.UpdateCliente(cliente);
-                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,7 +138,6 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             await _appService.DeleteClienteAsync(id);
-            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

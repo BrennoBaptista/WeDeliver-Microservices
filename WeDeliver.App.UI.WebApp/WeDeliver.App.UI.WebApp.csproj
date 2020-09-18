@@ -17,12 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\WeDeliver.App.Application\WeDeliver.App.Application.csproj" />
     <ProjectReference Include="..\WeDeliver.Common.Infra.Helper\WeDeliver.Common.Infra.Helper.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.ClienteMicroservice.Domain\WeDeliver.Microservices.ClienteMicroservice.Domain.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess\WeDeliver.Microservices.ClienteMicroservice.Infra.DataAccess.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.PacoteMicroservice.Domain\WeDeliver.Microservices.PacoteMicroservice.Domain.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.PacoteMicroservice.Infra.DataAccess\WeDeliver.Microservices.PacoteMicroservice.Infra.DataAccess.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Domain\WeDeliver.Microservices.PostagemMicroservice.Domain.csproj" />
-    <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess\WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

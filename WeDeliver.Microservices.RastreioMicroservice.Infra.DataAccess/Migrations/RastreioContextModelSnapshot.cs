@@ -32,10 +32,12 @@ namespace WeDeliver.Microservices.RastreioMicroservice.Infra.DataAccess.Migratio
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Localizacao")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("StatusEnvio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<DateTime>("UltimaAtualizacao")
                         .HasColumnType("datetime2");

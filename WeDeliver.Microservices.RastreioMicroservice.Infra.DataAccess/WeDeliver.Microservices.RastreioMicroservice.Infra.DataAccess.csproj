@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200918021547_update5.cs" />
+    <Compile Remove="Migrations\20200918021547_update5.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
@@ -14,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WeDeliver.Common.Infra.DataAccess\WeDeliver.Common.Infra.DataAccess.csproj" />
     <ProjectReference Include="..\WeDeliver.Microservices.RastreioMicroservice.Domain\WeDeliver.Microservices.RastreioMicroservice.Domain.csproj" />
   </ItemGroup>
 

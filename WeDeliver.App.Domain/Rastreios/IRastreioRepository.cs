@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using WeDeliver.Common.Domain.Repositories;
 
-namespace WeDeliver.App.Domain
+namespace WeDeliver.App.Domain.Rastreios
 {
-    public interface IPostagemRepository : IRepository<Guid, Postagem>
+    public interface IRastreioRepository : IRepository<Guid, Rastreio>
     {
     }
 }

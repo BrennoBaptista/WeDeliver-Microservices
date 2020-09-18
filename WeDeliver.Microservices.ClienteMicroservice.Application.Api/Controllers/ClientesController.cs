@@ -15,6 +15,7 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Application.Api.Controller
     public class ClientesController : ControllerBase
     {
         private readonly ClienteContext _context;
+
         public ClientesController(ClienteContext context)
         {
             _context = context;

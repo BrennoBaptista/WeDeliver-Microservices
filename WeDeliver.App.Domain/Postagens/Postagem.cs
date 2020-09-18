@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WeDeliver.Common.Domain.Entities;
 
-namespace WeDeliver.App.Domain
+namespace WeDeliver.App.Domain.Postagens
 {
     public class Postagem : EntidadeBase<Guid>
     {

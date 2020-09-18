@@ -29,12 +29,14 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Migratio
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Destino")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("Id_Pacote")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Recebedor")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

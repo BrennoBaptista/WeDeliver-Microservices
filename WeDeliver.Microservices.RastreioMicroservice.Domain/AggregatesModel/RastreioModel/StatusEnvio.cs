@@ -1,6 +1,6 @@
 ﻿namespace WeDeliver.Microservices.RastreioMicroservice.Domain.AggregatesModel.RastreioModel
 {
-    public enum Status
+    public enum StatusEnvio
     {
         Postado,
         Em_Transito,

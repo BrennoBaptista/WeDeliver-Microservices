@@ -87,7 +87,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeDeliver.App.Infra.DataAcc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{8EDC3E6A-DB25-4F4C-A34D-4BF058CB2D1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDeliver.App.Application", "WeDeliver.App.Application\WeDeliver.App.Application.csproj", "{E391F7E1-1459-4041-817B-C01D541A5096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeDeliver.App.Application", "WeDeliver.App.Application\WeDeliver.App.Application.csproj", "{E391F7E1-1459-4041-817B-C01D541A5096}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

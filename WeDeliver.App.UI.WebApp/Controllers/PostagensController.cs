@@ -6,41 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WeDeliver.App.Application;
-using WeDeliver.App.Domain;
-using WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Contexts;
+using WeDeliver.App.Domain.Postagens;
 
 namespace WeDeliver.App.UI.WebApp.Controllers
 {
     public class PostagensController : Controller
     {
         private readonly IAppService _appService;
-        private readonly PostagemContext _context;
 
-        public PostagensController(IAppService appService, PostagemContext context)
+        public PostagensController(IAppService appService)
         {
             _appService = appService;
-            _context = context;
         }
 
         // GET: Postagens
         public async Task<IActionResult> Index()
         {
-            //var postagens = await _context.Postagens.ToListAsync();
             var postagens = await _appService.GetAllPostagensAsync();
-
             return View(postagens);
         }
 
         // GET: Postagens/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            
-            var postagem = await _context.Postagens
-                .FirstOrDefaultAsync(m => m.Id == id);
+
+            var postagem = await _appService.GetPostagemAsync(id);
+
             if (postagem == null)
             {
                 return NotFound();
@@ -65,22 +60,22 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 postagem.Id = Guid.NewGuid();
-                _context.Add(postagem);
-                await _context.SaveChangesAsync();
+                await _appService.AdicionarPostagemAsync(postagem);
                 return RedirectToAction(nameof(Index));
             }
             return View(postagem);
         }
 
         // GET: Postagens/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var postagem = await _context.Postagens.FindAsync(id);
+            var postagem = await _appService.GetPostagemAsync(id);
+
             if (postagem == null)
             {
                 return NotFound();
@@ -104,8 +99,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             {
                 try
                 {
-                    _context.Update(postagem);
-                    await _context.SaveChangesAsync();
+                    _appService.UpdatePostagem(postagem);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,15 +118,15 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         }
 
         // GET: Postagens/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var postagem = await _context.Postagens
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var postagem = await _appService.GetPostagemAsync(id);
+
             if (postagem == null)
             {
                 return NotFound();
@@ -146,15 +140,13 @@ namespace WeDeliver.App.UI.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var postagem = await _context.Postagens.FindAsync(id);
-            _context.Postagens.Remove(postagem);
-            await _context.SaveChangesAsync();
+            await _appService.DeletePostagemAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostagemExists(Guid id)
         {
-            return _context.Postagens.Any(e => e.Id == id);
+            return (_appService.GetPostagemAsync(id) != null);
         }
     }
 }

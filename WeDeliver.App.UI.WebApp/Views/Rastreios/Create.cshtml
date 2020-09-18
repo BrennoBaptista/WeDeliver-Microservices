@@ -1,0 +1,57 @@
+﻿@model WeDeliver.App.Domain.Rastreios.Rastreio
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Rastreio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id_Postagem" class="control-label"></label>
+                <input asp-for="Id_Postagem" class="form-control" />
+                <span asp-validation-for="Id_Postagem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id_Pacote" class="control-label"></label>
+                <input asp-for="Id_Pacote" class="form-control" />
+                <span asp-validation-for="Id_Pacote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusEnvio" class="control-label"></label>
+                <select asp-for="StatusEnvio" class="form-control">
+                    <option value="0">Postado</option>
+                    <option value="1">Em_Transito</option>
+                    <option value="2">Entregue</option>
+                </select>
+                <span asp-validation-for="StatusEnvio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" />
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UltimaAtualizacao" class="control-label"></label>
+                <input asp-for="UltimaAtualizacao" class="form-control" />
+                <span asp-validation-for="UltimaAtualizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

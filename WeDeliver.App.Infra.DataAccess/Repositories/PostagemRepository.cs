@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using WeDeliver.App.Domain;
+using WeDeliver.App.Domain.Postagens;
 using WeDeliver.Common.Domain.Services;
 
 namespace WeDeliver.App.Infra.DataAccess.Repositories
@@ -25,11 +25,17 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens", httpContent);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task<Postagem> ReadAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            var httpClient = new HttpClient();
+            var result = await httpClient.GetAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens/" + $"{id}");
 
+            string serializedPostagem = await result.Content.ReadAsStringAsync();
+            var postagem = _serializerService.Deserialize<Postagem>(serializedPostagem);
+
+            return postagem;
+        }
+        
         public IEnumerable<Postagem> ReadAll()
         {
             var httpClient = new HttpClient();
@@ -58,17 +64,21 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return postagens;
         }
 
-        public Task<Postagem> ReadAsync(Guid id)
+        public void Update(Postagem entity)
         {
-            throw new NotImplementedException();
+            var httpClient = new HttpClient();
+            string serializedPostagem = _serializerService.Serialize(entity);
+            var httpContent = new StringContent(serializedPostagem, Encoding.UTF8, "application/json");
+            httpClient.PutAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens/" + $"{entity.Id}", httpContent);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var httpClient = new HttpClient();
+            await httpClient.DeleteAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens/" + $"{id}");
         }
 
         public Task<int> SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Postagem entity)
         {
             throw new NotImplementedException();
         }
