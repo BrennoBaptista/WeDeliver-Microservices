@@ -16,6 +16,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             _appService = appService;
         }
 
+        //Mostra todos os clientes cadastrados
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
@@ -23,6 +24,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(clientes);
         }
 
+        //Mostra os detalhes de um cliente
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
@@ -47,6 +49,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View();
         }
 
+        //Cria um novo cliente
         // POST: Clientes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -80,6 +83,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(cliente);
         }
 
+        //Edita o registro de um cliente
         // POST: Clientes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -132,6 +136,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(cliente);
         }
 
+        //Deleta um cliente
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -141,6 +146,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Verifica se um cliente existe
         private bool ClienteExists(Guid id)
         {
             return (_appService.GetClienteAsync(id) != null);

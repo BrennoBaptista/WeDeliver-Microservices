@@ -14,39 +14,14 @@ namespace WeDeliver.Microservices.RastreioMicroservice.Domain.AggregatesModel.Ra
             _rastreioRepository = rastreioRepository;
         }
 
-        public async Task CreateAsync(Rastreio entity)
+        public Rastreio GetRastreioPorPacote(Guid id_pacote)
         {
-            await _rastreioRepository.CreateAsync(entity);
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Rastreio> ReadAll()
+        public Rastreio GetRastreioPorPostagem(Guid id_postagem)
         {
-            return _rastreioRepository.ReadAll();
-        }
-
-        public async Task<IEnumerable<Rastreio>> ReadAllAsync()
-        {
-            return await _rastreioRepository.ReadAllAsync();
-        }
-
-        public async Task<Rastreio> ReadAsync(Guid id)
-        {
-            return await _rastreioRepository.ReadAsync(id);
-        }
-
-        public void Update(Rastreio entity)
-        {
-            _rastreioRepository.Update(entity);
-        }
-
-        public async Task DeleteAsync(Guid id)
-        {
-            await _rastreioRepository.DeleteAsync(id);
-        }
-
-        public async Task<int> SaveChangesAsync()
-        {
-            return await _rastreioRepository.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

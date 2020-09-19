@@ -14,9 +14,33 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.Po
             _postagemRepository = postagemRepository;
         }
 
-        public Postagem GetPostagemPorPacote(Guid pacoteId)
+        public Postagem CriarPostagem(Guid id_pacote, string destino, string recebedor)
         {
-            return _postagemRepository.GetPostagemPorPacote(pacoteId);
+            var postagem = new Postagem
+            {
+                Id = Guid.NewGuid(),
+                Id_Pacote = id_pacote,
+                Destino = destino,
+                Recebedor = recebedor,
+                DataEnvio = DateTime.Now
+            };
+            return postagem;
+        }
+
+        public Postagem GetPostagemPorPacote(Guid id_pacote)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> ProcessarPostagemAsync(Postagem postagem)
+        {
+            if(postagem.Destino == null || postagem.Recebedor == null)
+            {
+                throw new Exception("Informe o destino e/ou recebedor.");
+            }
+
+            await _postagemRepository.CreateAsync(postagem);
+            return await _postagemRepository.SaveChangesAsync() > 0;
         }
     }
 }

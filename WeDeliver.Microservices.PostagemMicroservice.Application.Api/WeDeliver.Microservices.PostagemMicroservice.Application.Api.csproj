@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WeDeliver.Common.Infra.Helper\WeDeliver.Common.Infra.Helper.csproj" />
+    <ProjectReference Include="..\WeDeliver.Common.Infra.Messaging\WeDeliver.Common.Infra.Messaging.csproj" />
+    <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Application\WeDeliver.Microservices.PostagemMicroservice.Application.csproj" />
     <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Domain\WeDeliver.Microservices.PostagemMicroservice.Domain.csproj" />
     <ProjectReference Include="..\WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess\WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.csproj" />
   </ItemGroup>

@@ -17,6 +17,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             _serializerService = serializerService;
         }
 
+        //Cria uma rastreio através da api publicada no azure
         public async Task CreateAsync(Rastreio entity)
         {
             var httpClient = new HttpClient();
@@ -25,6 +26,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("https://wedeliver-rastreio-microservice-api-brenno.azurewebsites.net/api/rastreios", httpContent);
         }
 
+        //Requisita todas os rastreios através da api publicada no azure
         public IEnumerable<Rastreio> ReadAll()
         {
             var httpClient = new HttpClient();
@@ -39,6 +41,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return rastreios;
         }
 
+        //Requisita todas os rastreios através da api publicada no azure
         public async Task<IEnumerable<Rastreio>> ReadAllAsync()
         {
             var httpClient = new HttpClient();
@@ -53,6 +56,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return rastreios;
         }
 
+        //Requisita um rastreio através da api publicada no azure
         public async Task<Rastreio> ReadAsync(Guid id)
         {
             var httpClient = new HttpClient();
@@ -64,6 +68,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return rastreio;
         }
 
+        //Atualiza um rastreio através da api publicada no azure
         public void Update(Rastreio entity)
         {
             var httpClient = new HttpClient();
@@ -72,6 +77,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             httpClient.PutAsync("https://wedeliver-rastreio-microservice-api-brenno.azurewebsites.net/api/rastreios/" + $"{entity.Id}", httpContent);
         }
 
+        //Deleta um rastreio através da api publicada no azure
         public async Task DeleteAsync(Guid id)
         {
             var httpClient = new HttpClient();

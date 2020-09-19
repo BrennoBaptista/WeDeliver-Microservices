@@ -17,6 +17,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             _serializerService = serializerService;
         }
 
+        //Cria uma pacote através da api publicada no azure
         public async Task CreateAsync(Pacote entity)
         {
             var httpClient = new HttpClient();
@@ -25,6 +26,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("https://wedeliver-pacote-microservice-api-brenno.azurewebsites.net/api/pacotes", httpContent);
         }
 
+        //Requisita um pacote através da api publicada no azure
         public async Task<Pacote> ReadAsync(Guid id)
         {
             var httpClient = new HttpClient();
@@ -36,6 +38,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return pacote;
         }
 
+        //Requisita todas os pacotes através da api publicada no azure
         public IEnumerable<Pacote> ReadAll()
         {
 
@@ -51,6 +54,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return pacotes;
         }
 
+        //Requisita todas as pacotes através da api publicada no azure
         public async Task<IEnumerable<Pacote>> ReadAllAsync()
         {
             var httpClient = new HttpClient();
@@ -65,6 +69,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return pacotes;
         }
 
+        //Atualiza um pacote através da api publicada no azure
         public void Update(Pacote entity)
         {
             var httpClient = new HttpClient();
@@ -73,6 +78,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             httpClient.PutAsync("https://wedeliver-pacote-microservice-api-brenno.azurewebsites.net/api/pacotes/" + $"{entity.Id}", httpContent);
         }
 
+        //Deleta um pacote através da api publicada no azure
         public async Task DeleteAsync(Guid id)
         {
             var httpClient = new HttpClient();

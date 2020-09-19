@@ -89,6 +89,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeDeliver.App.Application", "WeDeliver.App.Application\WeDeliver.App.Application.csproj", "{E391F7E1-1459-4041-817B-C01D541A5096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDeliver.Microservices.PostagemMicroservice.Application", "WeDeliver.Microservices.PostagemMicroservice.Application\WeDeliver.Microservices.PostagemMicroservice.Application.csproj", "{DBEC4C72-D607-43AD-93E5-AA6934900432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDeliver.Common.Infra.Messaging", "WeDeliver.Common.Infra.Messaging\WeDeliver.Common.Infra.Messaging.csproj", "{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDeliver.Common.Application", "WeDeliver.Common.Application\WeDeliver.Common.Application.csproj", "{1A612FEE-B495-427F-A2A8-947E4E49A9BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeDeliver.Microservices.PostagemMicroservice.Application.PostagemWorker", "WeDeliver.Microservices.PostagemMicroservice.Application.PostagemWorker\WeDeliver.Microservices.PostagemMicroservice.Application.PostagemWorker.csproj", "{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +179,22 @@ Global
 		{E391F7E1-1459-4041-817B-C01D541A5096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E391F7E1-1459-4041-817B-C01D541A5096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E391F7E1-1459-4041-817B-C01D541A5096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBEC4C72-D607-43AD-93E5-AA6934900432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBEC4C72-D607-43AD-93E5-AA6934900432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBEC4C72-D607-43AD-93E5-AA6934900432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBEC4C72-D607-43AD-93E5-AA6934900432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A612FEE-B495-427F-A2A8-947E4E49A9BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A612FEE-B495-427F-A2A8-947E4E49A9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A612FEE-B495-427F-A2A8-947E4E49A9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A612FEE-B495-427F-A2A8-947E4E49A9BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -216,6 +240,10 @@ Global
 		{42166867-08A1-4C8A-8A7F-3BA9DB5B52B9} = {AA093BA6-CECD-45FA-A0FC-FBD7BC928089}
 		{8EDC3E6A-DB25-4F4C-A34D-4BF058CB2D1D} = {50692F62-C052-49C0-9D21-20581D53274F}
 		{E391F7E1-1459-4041-817B-C01D541A5096} = {8EDC3E6A-DB25-4F4C-A34D-4BF058CB2D1D}
+		{DBEC4C72-D607-43AD-93E5-AA6934900432} = {0170D85C-7F40-4F1C-9E37-4FCEFB3C5E52}
+		{1E5E7EA6-C5AE-40A9-A684-1DB6BCEFB298} = {2C591EB7-1C4E-4599-820C-6199116F91E1}
+		{1A612FEE-B495-427F-A2A8-947E4E49A9BF} = {2C591EB7-1C4E-4599-820C-6199116F91E1}
+		{CDDF73A8-8FB3-449E-8A7C-D6A5CC6030EB} = {0170D85C-7F40-4F1C-9E37-4FCEFB3C5E52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {215158AA-3134-46B4-88FE-2CEEA8A57EC2}

@@ -7,6 +7,5 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.Po
 {
     public interface IPostagemRepository : IRepository<Guid, Postagem>
     {
-        Postagem GetPostagemPorPacote(Guid pacoteId);
     }
 }

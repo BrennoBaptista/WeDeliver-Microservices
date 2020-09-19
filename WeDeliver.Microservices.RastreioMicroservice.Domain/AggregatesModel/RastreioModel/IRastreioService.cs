@@ -7,12 +7,7 @@ namespace WeDeliver.Microservices.RastreioMicroservice.Domain.AggregatesModel.Ra
 {
     interface IRastreioService
     {
-        Task CreateAsync(Rastreio entity);
-        void Update(Rastreio entity);
-        Task<Rastreio> ReadAsync(Guid id);
-        IEnumerable<Rastreio> ReadAll();
-        Task<IEnumerable<Rastreio>> ReadAllAsync();
-        Task DeleteAsync(Guid id);
-        Task<int> SaveChangesAsync();
+        Rastreio GetRastreioPorPacote(Guid id_pacote);
+        Rastreio GetRastreioPorPostagem(Guid id_postagem);
     }
 }

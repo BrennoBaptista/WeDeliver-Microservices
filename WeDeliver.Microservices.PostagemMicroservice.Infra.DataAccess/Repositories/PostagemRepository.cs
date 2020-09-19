@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using WeDeliver.Common.Infra.DataAccess;
 using WeDeliver.Microservices.PostagemMicroservice.Domain.AggregatesModel.PostagemAggregate;
-using WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Contexts;
 
 namespace WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Repositories
 {
@@ -13,11 +12,6 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Infra.DataAccess.Reposito
         public PostagemRepository(DbContext context)
             : base(context)
         {
-        }
-
-        public Postagem GetPostagemPorPacote(Guid pacoteId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

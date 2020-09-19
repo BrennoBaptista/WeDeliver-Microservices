@@ -16,6 +16,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             _appService = appService;
         }
 
+        //Mostra todos os pacotes cadastrados
         // GET: Pacotes
         public async Task<IActionResult> Index()
         {
@@ -23,6 +24,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(pacotes);
         }
 
+        //Mostra os detalhes de um pacote
         // GET: Pacotes/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
@@ -47,6 +49,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View();
         }
 
+        //Cria um novo pacote
         // POST: Pacotes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -80,6 +83,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(pacote);
         }
 
+        //Edita o registro de um pacote
         // POST: Pacotes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -132,6 +136,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(pacote);
         }
 
+        //Deleta um cliente
         // POST: Pacotes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -141,6 +146,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Verifica se um pacote existe
         private bool PacoteExists(Guid id)
         {
             return (_appService.GetPacoteAsync(id) != null);

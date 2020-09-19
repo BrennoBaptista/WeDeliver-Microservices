@@ -17,6 +17,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             _serializerService = serializerService;
         }
 
+        //Cria uma postagem através da api publicada no azure
         public async Task CreateAsync(Postagem entity)
         {
             var httpClient = new HttpClient();
@@ -25,6 +26,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens", httpContent);
         }
 
+        //Requisita uma postagem através da api publicada no azure
         public async Task<Postagem> ReadAsync(Guid id)
         {
             var httpClient = new HttpClient();
@@ -35,7 +37,8 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
 
             return postagem;
         }
-        
+
+        //Requisita todas as postagens através da api publicada no azure
         public IEnumerable<Postagem> ReadAll()
         {
             var httpClient = new HttpClient();
@@ -50,6 +53,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return postagens;
         }
 
+        //Requisita todas as postagens através da api publicada no azure
         public async Task<IEnumerable<Postagem>> ReadAllAsync()
         {
             var httpClient = new HttpClient();
@@ -64,6 +68,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return postagens;
         }
 
+        //Atualiza uma postagem através da api publicada no azure
         public void Update(Postagem entity)
         {
             var httpClient = new HttpClient();
@@ -72,11 +77,14 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             httpClient.PutAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens/" + $"{entity.Id}", httpContent);
         }
 
+        //Deleta uma postagem através da api publicada no azure
         public async Task DeleteAsync(Guid id)
         {
             var httpClient = new HttpClient();
             await httpClient.DeleteAsync("http://wedeliver-postagem-microservice-api-brenno.azurewebsites.net/api/postagens/" + $"{id}");
         }
+
+
 
         public Task<int> SaveChangesAsync()
         {

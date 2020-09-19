@@ -15,10 +15,12 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Application.Api.Controlle
     public class PostagensController : ControllerBase
     {
         private readonly PostagemContext _context;
+        private readonly IApiApplicationService _apiApplicationService;
 
-        public PostagensController(PostagemContext context)
+        public PostagensController(PostagemContext context, IApiApplicationService apiApplicationService)
         {
             _context = context;
+            _apiApplicationService = apiApplicationService;
         }
 
         // GET: api/Postagens
@@ -80,8 +82,11 @@ namespace WeDeliver.Microservices.PostagemMicroservice.Application.Api.Controlle
         [HttpPost]
         public async Task<ActionResult<Postagem>> PostPostagem(Postagem postagem)
         {
-            _context.Postagens.Add(postagem);
-            await _context.SaveChangesAsync();
+            //Guid.Parse(User.FindFirst("sub")?.Value);
+            await _apiApplicationService.CriarPostagemAsync(postagem.Id_Pacote, postagem.Destino, postagem.Recebedor);
+
+            //_context.Postagens.Add(postagem);
+            //await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPostagem", new { id = postagem.Id }, postagem);
         }

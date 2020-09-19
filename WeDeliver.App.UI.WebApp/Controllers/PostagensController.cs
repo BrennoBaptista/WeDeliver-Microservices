@@ -19,6 +19,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             _appService = appService;
         }
 
+        //Mostra todos as postagens cadastrados
         // GET: Postagens
         public async Task<IActionResult> Index()
         {
@@ -26,6 +27,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(postagens);
         }
 
+        //Mostra os detalhes de uma postagem
         // GET: Postagens/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
@@ -50,6 +52,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View();
         }
 
+        //Cria um nova postagem
         // POST: Postagens/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -83,6 +86,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(postagem);
         }
 
+        //Edita o registro de uma postagem
         // POST: Postagens/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -135,6 +139,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(postagem);
         }
 
+        //Deleta uma postagem
         // POST: Postagens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -144,6 +149,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Verifica se uma postagem existe
         private bool PostagemExists(Guid id)
         {
             return (_appService.GetPostagemAsync(id) != null);

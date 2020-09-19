@@ -8,14 +8,6 @@ namespace WeDeliver.Microservices.ClienteMicroservice.Domain.AggregatesModel.Cli
 {
     public interface IClienteService
     {
-        Task CreateAsync(Cliente entity);
-        void Update(Cliente entity);
-        Task<Cliente> ReadAsync(Guid id);
-        IEnumerable<Cliente> ReadAll();
-        Task<IEnumerable<Cliente>> ReadAllAsync();
-        Task DeleteAsync(Guid id);
-        Task<int> SaveChangesAsync();
-
-        
+        Cliente GetClientePorNome(string nome);
     }
 }

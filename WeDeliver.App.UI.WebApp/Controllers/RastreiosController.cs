@@ -16,6 +16,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             _appService = appService;
         }
 
+        //Mostra todos os rastreios cadastrados
         // GET: Rastreios
         public async Task<IActionResult> Index()
         {
@@ -23,6 +24,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(rastreios);
         }
 
+        //Mostra os detalhes de um rastreio
         // GET: Rastreios/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
@@ -47,6 +49,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View();
         }
 
+        //Cria um novo rastreio
         // POST: Rastreios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -80,6 +83,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(rastreio);
         }
 
+        //Edita o registro de um rastreio
         // POST: Rastreios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -132,6 +136,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return View(rastreio);
         }
 
+        //Deleta um rastreio
         // POST: Rastreios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -141,6 +146,7 @@ namespace WeDeliver.App.UI.WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Verifica se um rastreio existe
         private bool RastreioExists(Guid id)
         {
             return (_appService.GetRastreioAsync(id) != null);

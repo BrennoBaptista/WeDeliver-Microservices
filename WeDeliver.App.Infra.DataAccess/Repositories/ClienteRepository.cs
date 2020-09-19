@@ -16,6 +16,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             _serializerService = serializerService;
         }
 
+        //Cria um cliente através da api publicada no azure
         public async Task CreateAsync(Cliente entity)
         {
             var httpClient = new HttpClient();
@@ -24,6 +25,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             await httpClient.PostAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes", httpContent);
         }
 
+        //Requisita um cliente através da api publicada no azure
         public async Task<Cliente> ReadAsync(Guid id)
         {
             var httpClient = new HttpClient();
@@ -35,6 +37,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return cliente;
         }
 
+        //Requisita todas os clientes através da api publicada no azure
         public IEnumerable<Cliente> ReadAll()
         {
             var httpClient = new HttpClient();
@@ -49,6 +52,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return clientes;
         }
 
+        //Requisita todas as clientes através da api publicada no azure
         public async Task<IEnumerable<Cliente>> ReadAllAsync()
         {
             var httpClient = new HttpClient();
@@ -63,6 +67,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             return clientes;
         }
 
+        //Atualiza um cliente através da api publicada no azure
         public void Update(Cliente entity)
         {
             var httpClient = new HttpClient();
@@ -71,6 +76,7 @@ namespace WeDeliver.App.Infra.DataAccess.Repositories
             httpClient.PutAsync("http://wedeliver-cliente-microservice-api-brenno.azurewebsites.net/api/clientes/" + $"{entity.Id}", httpContent);
         }
 
+        //Deleta um cliente através da api publicada no azure
         public async Task DeleteAsync(Guid id)
         {
             var httpClient = new HttpClient();
